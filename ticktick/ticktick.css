@@ -1,0 +1,15 @@
+.upgrade-button {
+  display: none !important;
+}
+
+.g-right {
+  width: 45% !important;
+}
+
+.g-center {
+  right: 45% !important;
+}
+
+.lists {
+  padding-bottom: 0 !important;
+}
