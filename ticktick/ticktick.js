@@ -59,14 +59,27 @@
   }
 
   function _updateCounters() {
-    $.getJSON("/api/v2/projects",
-      function (projects) {
+    $.getJSON("/api/v2/batch/check/0",
+      function (batchData) {
+        var projects = batchData.projectProfiles;
+        projects.push({id: 'all'});
+        projects.push({id: batchData.inboxId});
         projects.forEach(function (project) {
           $.getJSON("/api/v2/project/" + project.id + "/tasks",
             function (tasks) {
-              var tasksSummary = _calculateTasksSummary(tasks);
+              var tasksSummary = _calculateTasksSummary(tasks),
+                $projectBox;
 
-              var $projectBox = $(".project-box > .project-title:contains('" + project.name + "')").parent();
+              if (project.id == 'all') {
+                $projectBox = $('#project_tasks');
+              }
+              else if (project.id == batchData.inboxId) {
+                $projectBox = $('[id^=project_inbox]');
+              }
+              else {
+                $projectBox = $(".project-box > .project-title:contains('" + project.name + "')").parent();
+              }
+
               $projectBox.find(".advanced-counter").remove();
 
               var $countBox = $projectBox.find(".count");
