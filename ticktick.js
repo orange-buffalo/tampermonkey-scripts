@@ -2,22 +2,16 @@
 // @name         ticktick
 // @namespace    http://tampermonkey.net/
 // @version      0.1
+// @updateURL    https://raw.githubusercontent.com/orange-buffalo/tampermonkey-scripts/master/ticktick.js
+// @downloadURL  https://raw.githubusercontent.com/orange-buffalo/tampermonkey-scripts/master/ticktick.js
 // @author       orange-buffalo
 // @match        https://www.ticktick.com
-// @grant        none
+// @grant        GM_addStyle
 // @require      https://momentjs.com/downloads/moment.js
 // ==/UserScript==
 
 (function () {
   'use strict';
-
-  function _addGlobalStyle(css) {
-    var head = document.getElementsByTagName('head')[0];
-    var style = document.createElement('style');
-    style.type = 'text/css';
-    style.innerHTML = css;
-    head.appendChild(style);
-  }
 
   function _calculateTasksSummary(tasks) {
     var dueTodayTasksCount = 0;
@@ -93,7 +87,7 @@
 
   _interceptAjaxRequests();
 
-  _addGlobalStyle(/*jshint multistr: true */' \
+  GM_addStyle(/*jshint multistr: true */' \
       .upgrade-button { \
          display: none !important; \
       } \
