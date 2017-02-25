@@ -54,7 +54,7 @@
     $('<span class="advanced-counter"></span>')
       .css('right', labelOffset)
       .css('background-color', backgroundColor)
-      .innerText(countValue)
+      .text(countValue)
       .insertBefore($parent);
 
     return labelOffset + counterLabelOffsetStep;
