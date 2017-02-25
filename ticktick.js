@@ -7,6 +7,7 @@
 // @author       orange-buffalo
 // @match        https://www.ticktick.com
 // @grant        GM_addStyle
+// @grant        GM_log
 // @require      https://momentjs.com/downloads/moment.js
 // ==/UserScript==
 
@@ -23,11 +24,11 @@
         var taskDueDate = new Date(task.dueDate);
         if (now.isAfter(moment(taskDueDate), 'day')) {
           overdueTasksCount++;
-          console.log(task.title + " is overdue");
+          GM_log(task.title + " is overdue");
         }
         if (now.isSame(moment(taskDueDate), 'day')) {
           dueTodayTasksCount++;
-          console.log(task.title + " is due today");
+          GM_log(task.title + " is due today");
         }
       }
     });
