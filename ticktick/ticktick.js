@@ -1,14 +1,13 @@
 // ==UserScript==
 // @name         ticktick
 // @namespace    https://github.com/orange-buffalo/tampermonkey-scripts/tree/master/ticktick
-// @version      0.3
+// @version      0.4
 // @updateURL    https://rawgit.com/orange-buffalo/tampermonkey-scripts/master/ticktick/ticktick.js
 // @downloadURL  https://rawgit.com/orange-buffalo/tampermonkey-scripts/master/ticktick/ticktick.js
 // @author       orange-buffalo
 // @match        https://www.ticktick.com
 // @match        https://ticktick.com
 // @grant        GM_addStyle
-// @grant        GM_log
 // @grant        GM_getResourceText
 // @require      https://momentjs.com/downloads/moment.js
 // @resource     ticktick-css https://rawgit.com/orange-buffalo/tampermonkey-scripts/master/ticktick/ticktick.css
@@ -27,11 +26,9 @@
         var taskDueDate = new Date(task.dueDate);
         if (now.isAfter(moment(taskDueDate), 'day')) {
           overdueTasksCount++;
-          GM_log(task.title + " is overdue");
         }
         if (now.isSame(moment(taskDueDate), 'day')) {
           dueTodayTasksCount++;
-          GM_log(task.title + " is due today");
         }
       }
     });
@@ -59,13 +56,13 @@
   }
 
   function _updateCounters() {
-    $.getJSON("/api/v2/batch/check/0",
+    $.getJSON('/api/v2/batch/check/0',
       function (batchData) {
         var projects = batchData.projectProfiles;
         projects.push({id: 'all'});
         projects.push({id: batchData.inboxId});
         projects.forEach(function (project) {
-          $.getJSON("/api/v2/project/" + project.id + "/tasks",
+          $.getJSON('/api/v2/project/' + project.id + '/tasks',
             function (tasks) {
               var tasksSummary = _calculateTasksSummary(tasks),
                 $projectBox;
@@ -77,12 +74,12 @@
                 $projectBox = $('[id^=project_inbox]');
               }
               else {
-                $projectBox = $(".project-box > .project-title:contains('" + project.name + "')").parent();
+                $projectBox = $('.project-box > .project-title:contains(\'' + project.name + "')").parent();
               }
 
-              $projectBox.find(".advanced-counter").remove();
+              $projectBox.find('.advanced-counter').remove();
 
-              var $countBox = $projectBox.find(".count");
+              var $countBox = $projectBox.find('.count');
               var counterLabelOffset = _insertCounterLabel($countBox, tasksSummary.dueTodayTasksCount, '#1d8fba', 36);
               _insertCounterLabel($countBox, tasksSummary.overdueTasksCount, '#d96969', counterLabelOffset);
             });
