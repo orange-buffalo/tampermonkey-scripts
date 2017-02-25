@@ -2,13 +2,15 @@
 // @name         ticktick
 // @namespace    http://tampermonkey.net/
 // @version      0.1
-// @updateURL    https://raw.githubusercontent.com/orange-buffalo/tampermonkey-scripts/master/ticktick.js
-// @downloadURL  https://raw.githubusercontent.com/orange-buffalo/tampermonkey-scripts/master/ticktick.js
+// @updateURL    https://raw.githubusercontent.com/orange-buffalo/tampermonkey-scripts/master/ticktick/ticktick.js
+// @downloadURL  https://raw.githubusercontent.com/orange-buffalo/tampermonkey-scripts/master/ticktick/ticktick.js
 // @author       orange-buffalo
 // @match        https://www.ticktick.com
 // @grant        GM_addStyle
 // @grant        GM_log
+// @grant        GM_getResourceText
 // @require      https://momentjs.com/downloads/moment.js
+// @resource     ticktick-css https://raw.githubusercontent.com/orange-buffalo/tampermonkey-scripts/master/ticktick/ticktick.css
 // ==/UserScript==
 
 (function () {
@@ -88,35 +90,7 @@
 
   _interceptAjaxRequests();
 
-  GM_addStyle(/*jshint multistr: true */' \
-      .upgrade-button { \
-         display: none !important; \
-      } \
-      .g-right { \
-         width: 45% !important; \
-      } \
-      .g-center { \
-         right: 45% !important; \
-      } \
-      .lists { \
-         padding-bottom: 0 !important; \
-      } \
-      .advanced-counter { \
-         position: absolute; \
-         font-size: 12px; \
-         display: inline-block; \
-         height: 12px; \
-         line-height: 12px; \
-         top: 50%; \
-         transform: translateY(-50%); \
-         padding: 2px; \
-         box-sizing: content-box; \
-         border-radius: 12px; \
-         width: 12px; \
-         text-align: center; \
-         color: #c1d1d1; \
-      } \
-      ');
+  GM_addStyle(GM_getResourceText('ticktick-css'));
 
   setTimeout(_updateCounters, 1000);
 
