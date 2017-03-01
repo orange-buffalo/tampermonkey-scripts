@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         ticktick
 // @namespace    https://github.com/orange-buffalo/tampermonkey-scripts/tree/master/ticktick
-// @version      0.5
+// @version      0.6
 // @updateURL    https://rawgit.com/orange-buffalo/tampermonkey-scripts/master/ticktick/ticktick.js
 // @downloadURL  https://rawgit.com/orange-buffalo/tampermonkey-scripts/master/ticktick/ticktick.js
 // @author       orange-buffalo
@@ -55,10 +55,7 @@
     return labelOffset + counterLabelOffsetStep;
   }
 
-  var lastCountersUpdate = moment(new Date());
-
   function _updateCounters() {
-    lastCountersUpdate = moment(new Date());
     $.getJSON('/api/v2/batch/check/0',
       function (batchData) {
         var projects = batchData.projectProfiles;
@@ -102,19 +99,12 @@
     }
   }
 
-  function _trackDateChange() {
-    var now = moment(new Date());
-    if (now.isAfter(lastCountersUpdate, 'day')) {
-      _updateCounters();
-    }
-  }
-
   _interceptAjaxRequests();
 
   GM_addStyle(GM_getResourceText('ticktick-css'));
 
   setTimeout(_updateCounters, 1000);
 
-  setTimeout(_trackDateChange, 60000);
+  $(window).focus(_updateCounters);
 
 })();
