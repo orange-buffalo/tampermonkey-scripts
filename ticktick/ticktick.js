@@ -1,16 +1,16 @@
 // ==UserScript==
 // @name         ticktick
 // @namespace    https://github.com/orange-buffalo/tampermonkey-scripts/tree/master/ticktick
-// @version      0.6
-// @updateURL    https://rawgit.com/orange-buffalo/tampermonkey-scripts/master/ticktick/ticktick.js
-// @downloadURL  https://rawgit.com/orange-buffalo/tampermonkey-scripts/master/ticktick/ticktick.js
+// @version      0.7
+// @updateURL    https://raw.githubusercontent.com/orange-buffalo/tampermonkey-scripts/master/ticktick/ticktick.js
+// @downloadURL  https://raw.githubusercontent.com/orange-buffalo/tampermonkey-scripts/master/ticktick/ticktick.js
 // @author       orange-buffalo
 // @match        https://www.ticktick.com
 // @match        https://ticktick.com
 // @grant        GM_addStyle
 // @grant        GM_getResourceText
 // @require      https://momentjs.com/downloads/moment.js
-// @resource     ticktick-css https://rawgit.com/orange-buffalo/tampermonkey-scripts/master/ticktick/ticktick.css
+// @resource     ticktick-css https://raw.githubusercontent.com/orange-buffalo/tampermonkey-scripts/master/ticktick/ticktick.css
 // ==/UserScript==
 
 (function () {
