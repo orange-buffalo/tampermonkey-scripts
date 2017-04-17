@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         ticktick
 // @namespace    https://github.com/orange-buffalo/tampermonkey-scripts/tree/master/ticktick
-// @version      0.7
+// @version      0.8
 // @updateURL    https://raw.githubusercontent.com/orange-buffalo/tampermonkey-scripts/master/ticktick/ticktick.js
 // @downloadURL  https://raw.githubusercontent.com/orange-buffalo/tampermonkey-scripts/master/ticktick/ticktick.js
 // @author       orange-buffalo
